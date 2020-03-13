@@ -28,11 +28,11 @@
                         <label for="title">Nombre:</label>
                         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="nombre" value="{{old('nombre')}}">
                         <label for="title">Fecha de Lanzamiento:</label>
-                        <input type="text" class="form-control" name="fechadelanzamiento" id="fechadelanzamiento" placeholder="Fecha de lanzamiento" value="{{old('fechadelanzamiento')}}">
+                        <input type="text" class="form-control" name="fechadelanzamiento" id="fechadelanzamiento" placeholder="aaaa/mm/dd" value="{{old('fechadelanzamiento')}}">
                         <label for="title">Duracion:</label>
                         <input type="text" class="form-control" name="duracion" id="duracion" placeholder="Duración" value="{{old('duracion')}}">
                         <label for="title">Clasificación:</label>
-                        <input type="text" class="form-control" name="clasificacion" id="clasificacion" placeholder="Clasificación" value="{{old('clasificacion')}}">
+                        <input type="text" class="form-control" name="clasificacion" id="clasificacion" placeholder="A" value="{{old('clasificacion')}}">
                         <label for="title">Sinopsis:</label>
                         <input type="text" class="form-control" name="sinopsis" id="sinopsis" placeholder="Sinopsis" value="{{old('sinopsis')}}">     
                         <label for="title">Trailer:</label>
