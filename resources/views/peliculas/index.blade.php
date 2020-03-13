@@ -1,6 +1,12 @@
 @extends('layouts.base')
 
 @section('content')
+    <script>
+        $(document).on("click", ".delete", function(){
+        $(this).parents("tr").remove();
+		
+    });
+    </script>
     <div class="col">
         <h1>Peliculas</h1>
     </div>
@@ -24,6 +30,7 @@
                             <td>{{$pelicula->paisdeorigen}}</td>
                             <td><a href="/peliculas/{{$pelicula->id}}/edit">Editar</a></td>
                             <td><a href="/peliculas/{{$pelicula->id}}/confirmDelete">Eliminar</a></td>
+                            <td><a class="delete" title="Delete" data-toggle="tooltip" >Delete Thaly</a></td>
                         </tr>
                     @endforeach
                 </table>
