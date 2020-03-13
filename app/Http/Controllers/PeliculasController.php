@@ -37,12 +37,18 @@ class PeliculasController extends Controller
      */
     public function store(Request $request)
     {
+        $rules_save = [
+            'expresion' => ['required', 'regex:/^(AA|EE|A|E)?$/i'],
+        ];
         $request->validate([
             'id'=>'numeric',
+            'nombre'=>'required',
             'fechadelanzamiento'=>'date',
             'duracion'=>'numeric',
-            'clasificacion'=>'regex:[E | AA | A]',
-            'trailer'=>'url'
+            'clasificacion'=>$rules_save['expresion'],
+            'sinopsis'=>'required',
+            'trailer'=>'url',
+            'paisdeorigen'=>'required',
         ]);
         pelicula::create($request->all())->save();
         return redirect('/peliculas');
@@ -81,12 +87,18 @@ class PeliculasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules_save = [
+            'expresion' => ['required', 'regex:/^(AA|EE|A|E)?$/i'],
+        ];
         $request->validate([
             'id'=>'numeric',
+            'nombre'=>'required',
             'fechadelanzamiento'=>'date',
             'duracion'=>'numeric',
-            'clasificacion'=>'regex:[E | AA | A]',
-            'trailer'=>'url'
+            'clasificacion'=>$rules_save['expresion'],
+            'sinopsis'=>'required',
+            'trailer'=>'url',
+            'paisdeorigen'=>'required',
         ]);
         $pelicula=pelicula::findOrFail($id);
         $pelicula->nombre=$request->get('nombre');
@@ -113,9 +125,5 @@ class PeliculasController extends Controller
         pelicula::findOrFail($id)->delete();   
         return redirect('/peliculas');
     }
-    public function confirmDelete($id){
-        return view('peliculas.confirmDelete',[
-            'pelicula'=>pelicula::findOrFail($id),
-        ]);
-    }
+    
 }

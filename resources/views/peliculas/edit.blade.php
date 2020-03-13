@@ -33,7 +33,7 @@
                         <label for="title">Duracion:</label>
                         <input type="text" class="form-control" name="duracion" id="duracion" placeholder="Duración" value="{{$pelicula->duracion}}">
                         <label for="title">Clasificación:</label>
-                        <input type="text" class="form-control" name="clasificacion" id="clasificacion" placeholder="A" value="{{$pelicula->clasificacion}}">
+                        <input type="text" class="form-control" name="clasificacion" id="clasificacion" placeholder="AA | EE | A | E" value="{{$pelicula->clasificacion}}">
                         <label for="title">Sinopsis:</label>
                         <input type="text" class="form-control" name="sinopsis" id="sinopsis" placeholder="Sinopsis" value="{{$pelicula->sinopsis}}">     
                         <label for="title">Trailer:</label>

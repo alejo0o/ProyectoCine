@@ -20,7 +20,8 @@ Route::get('/', function () {
 
 Route::resource('/peliculas','PeliculasController');
 
-Route::get('/peliculas/{id}/confirmDelete','PeliculasController@confirmDelete');
+Route::get('/peliculas/{id}/destroy','PeliculasController@destroy');
+
 
 
 
