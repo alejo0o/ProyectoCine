@@ -37,6 +37,13 @@ class PeliculasController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'id'=>'numeric',
+            'fechadelanzamiento'=>'date',
+            'duracion'=>'numeric',
+            'clasificacion'=>'regex:[E | AA | A]',
+            'trailer'=>'url'
+        ]);
         pelicula::create($request->all())->save();
         return redirect('/peliculas');
     }
@@ -59,7 +66,7 @@ class PeliculasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {       
         return view('peliculas.edit',[
             'pelicula'=>pelicula::findOrFail($id),
         ]);
@@ -74,6 +81,13 @@ class PeliculasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'id'=>'numeric',
+            'fechadelanzamiento'=>'date',
+            'duracion'=>'numeric',
+            'clasificacion'=>'regex:[E | AA | A]',
+            'trailer'=>'url'
+        ]);
         $pelicula=pelicula::findOrFail($id);
         $pelicula->nombre=$request->get('nombre');
         $pelicula->fechadelanzamiento=$request->get('fechadelanzamiento');
