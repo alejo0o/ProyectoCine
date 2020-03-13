@@ -38,17 +38,17 @@ class PeliculasController extends Controller
     public function store(Request $request)
     {
         $rules_save = [
-            'expresion' => ['required', 'regex:/^(AA|EE|A|E)?$/i'],
+            'expresion' => ['required', 'regex:/^(AA|A|B|C|D)?$/i'],
         ];
         $request->validate([
-            'id'=>'numeric',
-            'nombre'=>'required',
+            'id'=>'numeric|min:1|max:10',
+            'nombre'=>'required|min:1|max:50',
             'fechadelanzamiento'=>'date',
-            'duracion'=>'numeric',
+            'duracion'=>'numeric|min:1|max:9',
             'clasificacion'=>$rules_save['expresion'],
             'sinopsis'=>'required',
             'trailer'=>'url',
-            'paisdeorigen'=>'required',
+            'paisdeorigen'=>'required|min:1|max:30',
         ]);
         pelicula::create($request->all())->save();
         return redirect('/peliculas');
@@ -88,17 +88,17 @@ class PeliculasController extends Controller
     public function update(Request $request, $id)
     {
         $rules_save = [
-            'expresion' => ['required', 'regex:/^(AA|EE|A|E)?$/i'],
+            'expresion' => ['required', 'regex:/^(AA|A|B|C|D)?$/i'],
         ];
         $request->validate([
-            'id'=>'numeric',
-            'nombre'=>'required',
+            'id'=>'numeric|min:1|max:10',
+            'nombre'=>'required|min:1|max:50',
             'fechadelanzamiento'=>'date',
-            'duracion'=>'numeric',
+            'duracion'=>'numeric|min:1|max:9',
             'clasificacion'=>$rules_save['expresion'],
             'sinopsis'=>'required',
             'trailer'=>'url',
-            'paisdeorigen'=>'required',
+            'paisdeorigen'=>'required|min:1|max:30',
         ]);
         $pelicula=pelicula::findOrFail($id);
         $pelicula->nombre=$request->get('nombre');
