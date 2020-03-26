@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class PeliculasController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +16,8 @@ class PeliculasController extends Controller
      */
     public function index()
     {
-        return view('peliculas.index',[
-            'peliculas'=>pelicula::all(),
+        return view('peliculas.index', [
+            'peliculas' => pelicula::all(),
         ]);
     }
 
@@ -41,16 +43,16 @@ class PeliculasController extends Controller
             'expresion' => ['required', 'regex:/^(AA|A|B|C|D)?$/i'],
         ];
         $request->validate([
-            'id'=>'numeric|min:1|max:999999999',
-            'nombre'=>'required|min:1|max:50',
-            'fechadelanzamiento'=>'date',
-            'duracion'=>'numeric|min:1|max:2147483647',
-            'clasificacion'=>$rules_save['expresion'],
-            'sinopsis'=>'required',
-            'trailer'=>'url',
-            'paisdeorigen'=>'required|min:1|max:30',
+            'id' => 'numeric|min:1|max:999999999',
+            'nombre' => 'required|min:1|max:50',
+            'fechadelanzamiento' => 'date',
+            'duracion' => 'numeric|min:1|max:2147483647',
+            'clasificacion' => $rules_save['expresion'],
+            'sinopsis' => 'required',
+            'trailer' => 'url',
+            'paisdeorigen' => 'required|min:1|max:30',
         ]);
-        pelicula::create($request->all())->save();
+        pelicula::create($request->all());
         return redirect('/peliculas');
     }
 
@@ -62,7 +64,11 @@ class PeliculasController extends Controller
      */
     public function show($id)
     {
-        //
+        if (isset($id)) {
+            return pelicula::where('id', $id)->get();
+        } elseif (!isset($id)) {
+            return pelicula::all();
+        }
     }
 
     /**
@@ -72,9 +78,9 @@ class PeliculasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {       
-        return view('peliculas.edit',[
-            'pelicula'=>pelicula::findOrFail($id),
+    {
+        return view('peliculas.edit', [
+            'pelicula' => pelicula::findOrFail($id),
         ]);
     }
 
@@ -91,23 +97,23 @@ class PeliculasController extends Controller
             'expresion' => ['required', 'regex:/^(AA|A|B|C|D)?$/i'],
         ];
         $request->validate([
-            'id'=>'numeric|min:1|max:999999999',
-            'nombre'=>'required|min:1|max:50',
-            'fechadelanzamiento'=>'date',
-            'duracion'=>'numeric|min:1|max:2147483647',
-            'clasificacion'=>$rules_save['expresion'],
-            'sinopsis'=>'required',
-            'trailer'=>'url',
-            'paisdeorigen'=>'required|min:1|max:30',
+            'id' => 'numeric|min:1|max:999999999',
+            'nombre' => 'required|min:1|max:50',
+            'fechadelanzamiento' => 'date',
+            'duracion' => 'numeric|min:1|max:2147483647',
+            'clasificacion' => $rules_save['expresion'],
+            'sinopsis' => 'required',
+            'trailer' => 'url',
+            'paisdeorigen' => 'required|min:1|max:30',
         ]);
-        $pelicula=pelicula::findOrFail($id);
-        $pelicula->nombre=$request->get('nombre');
-        $pelicula->fechadelanzamiento=$request->get('fechadelanzamiento');
-        $pelicula->duracion=$request->get('duracion');
-        $pelicula->clasificacion=$request->get('clasificacion');
-        $pelicula->sinopsis=$request->get('sinopsis');
-        $pelicula->trailer=$request->get('trailer');
-        $pelicula->paisdeorigen=$request->get('paisdeorigen');
+        $pelicula = pelicula::findOrFail($id);
+        $pelicula->nombre = $request->get('nombre');
+        $pelicula->fechadelanzamiento = $request->get('fechadelanzamiento');
+        $pelicula->duracion = $request->get('duracion');
+        $pelicula->clasificacion = $request->get('clasificacion');
+        $pelicula->sinopsis = $request->get('sinopsis');
+        $pelicula->trailer = $request->get('trailer');
+        $pelicula->paisdeorigen = $request->get('paisdeorigen');
 
         $pelicula->save();
 
@@ -122,8 +128,12 @@ class PeliculasController extends Controller
      */
     public function destroy($id)
     {
-        pelicula::findOrFail($id)->delete();   
+        pelicula::findOrFail($id)->delete();
         return redirect('/peliculas');
     }
-    
+
+    public function all()
+    {
+        return pelicula::all();
+    }
 }
