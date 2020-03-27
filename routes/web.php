@@ -27,3 +27,7 @@ Route::get('/peliculas/{id}/destroy','PeliculasController@destroy');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
