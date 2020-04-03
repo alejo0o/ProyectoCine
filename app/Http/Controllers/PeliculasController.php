@@ -7,10 +7,7 @@ use Illuminate\Http\Request;
 
 class PeliculasController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Display a listing of the resource.

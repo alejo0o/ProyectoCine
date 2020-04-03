@@ -18,14 +18,9 @@ Route::get('/', function () {
 });
 
 
-Route::resource('/peliculas','PeliculasController');
+Route::resource('/peliculas', 'PeliculasController');
 
-Route::get('/peliculas/{id}/destroy','PeliculasController@destroy');
-
-
-
-
-
+Route::get('/peliculas/{id}/destroy', 'PeliculasController@destroy');
 
 
 Auth::routes();
