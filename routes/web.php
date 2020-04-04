@@ -18,12 +18,11 @@ Route::get('/', function () {
 });
 
 
-Route::resource('/peliculas','PeliculasController');
+//Route::get('/peliculas', 'PeliculasController@all');
 
-Route::get('/peliculas/{id}/destroy','PeliculasController@destroy');
+//Route::get('/peliculas/{id}', 'PeliculasController@show');
 
-
-
-
+//Route::post('/peliculas', 'PeliculasController@crear');
 
 
+//Route::get('/peliculas/{id}/destroy', 'PeliculasController@destroy');

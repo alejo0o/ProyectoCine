@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\pelicula;
 use Illuminate\Http\Request;
+use PHPUnit\Util\Json;
 
 class PeliculasController extends Controller
 {
@@ -16,9 +17,6 @@ class PeliculasController extends Controller
      */
     public function index()
     {
-        return view('peliculas.index', [
-            'peliculas' => pelicula::all(),
-        ]);
     }
 
     /**
@@ -28,7 +26,6 @@ class PeliculasController extends Controller
      */
     public function create()
     {
-        return view('peliculas.create');
     }
 
     /**
@@ -52,8 +49,9 @@ class PeliculasController extends Controller
             'trailer' => 'url',
             'paisdeorigen' => 'required|min:1|max:30',
         ]);
-        pelicula::create($request->all());
-        return redirect('/peliculas');
+
+        $pelicula = pelicula::create($request->all());
+        return json_encode($pelicula);
     }
 
     /**
@@ -64,11 +62,7 @@ class PeliculasController extends Controller
      */
     public function show($id)
     {
-        if (isset($id)) {
-            return pelicula::where('id', $id)->get();
-        } elseif (!isset($id)) {
-            return pelicula::all();
-        }
+        return json_encode(pelicula::findOrFail($id));
     }
 
     /**
@@ -79,9 +73,6 @@ class PeliculasController extends Controller
      */
     public function edit($id)
     {
-        return view('peliculas.edit', [
-            'pelicula' => pelicula::findOrFail($id),
-        ]);
     }
 
     /**
@@ -117,7 +108,7 @@ class PeliculasController extends Controller
 
         $pelicula->save();
 
-        return redirect('/peliculas');
+        return $pelicula;
     }
 
     /**
@@ -128,12 +119,12 @@ class PeliculasController extends Controller
      */
     public function destroy($id)
     {
-        pelicula::findOrFail($id)->delete();
-        return redirect('/peliculas');
+        $pelicula = pelicula::findOrFail($id)->delete();
+        return http_response_code(200);
     }
 
     public function all()
     {
-        return pelicula::all();
+        return json_encode(pelicula::all());
     }
 }
