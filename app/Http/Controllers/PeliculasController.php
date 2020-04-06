@@ -9,18 +9,11 @@ use Illuminate\Http\Request;
 class PeliculasController extends Controller
 {
 
-<<<<<<< HEAD
     public  function __construct()
     {
         $this->middleware('auth');
     }
 
-=======
-    public function __construct()
-    {
-        $this->middleware('auth'); //Ya tengo sueño lptm
-    }
->>>>>>> 4b677fba8ed01cc3e5f03bbfcc6dafed34a8f0c2
     /**
      * Display a listing of the resource.
      *

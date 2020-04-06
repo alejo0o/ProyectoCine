@@ -25,10 +25,4 @@ Route::get('/peliculas/{id}/destroy', 'PeliculasController@destroy');
 
 Auth::routes();
 
-<<<<<<< HEAD
-=======
-
-Auth::routes();
-
->>>>>>> 4b677fba8ed01cc3e5f03bbfcc6dafed34a8f0c2
 Route::get('/home', 'HomeController@index')->name('home');
