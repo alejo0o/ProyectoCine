@@ -49661,8 +49661,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! D:\Ingenieria en Sistemas\7tmo semestre\Nuevas Tecnicas de Programacion\proyectocinearreglo\ProyectoCine\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\Ingenieria en Sistemas\7tmo semestre\Nuevas Tecnicas de Programacion\proyectocinearreglo\ProyectoCine\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\Usuario\Desktop\Nuevas Técnicas\TrabajoProyecto\ProyectoCine\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Usuario\Desktop\Nuevas Técnicas\TrabajoProyecto\ProyectoCine\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> 4b677fba8ed01cc3e5f03bbfcc6dafed34a8f0c2
 
 
 /***/ })
