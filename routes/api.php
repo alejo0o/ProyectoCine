@@ -19,12 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/peliculas', 'PeliculasController@all');
+Route::get('/peliculas', 'PeliculasApi@list');
 
-Route::get('/peliculas/{id}', 'PeliculasController@show');
+Route::get('/peliculas/{id}', 'PeliculasApi@peliculaId');
 
-Route::post('/peliculas', 'PeliculasController@store');
+Route::post('/peliculas', 'PeliculasApi@create');
 
-Route::put('/peliculas/{id}', 'PeliculasController@update');
+Route::put('/peliculas/{id}', 'PeliculasApi@put');
 
-Route::delete('/peliculas/{id}', 'PeliculasController@destroy');
+Route::delete('peliculas/{id}', 'PeliculasApi@remove');
