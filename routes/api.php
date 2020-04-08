@@ -1,6 +1,7 @@
 <?php
 
 use App\pelicula;
+use App\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +20,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/peliculas', 'PeliculasApi@list');
 
-Route::get('/peliculas/{id}', 'PeliculasApi@peliculaId');
+Route::get('/peliculas', 'PeliculasController@all');
 
-Route::post('/peliculas', 'PeliculasApi@create');
+Route::get('/peliculas/{id}', 'PeliculasController@show');
 
-Route::put('/peliculas/{id}', 'PeliculasApi@put');
+Route::post('/peliculas', 'PeliculasController@store');
 
-Route::delete('peliculas/{id}', 'PeliculasApi@remove');
+Route::put('/peliculas/{id}', 'PeliculasController@update');
+
+Route::delete('peliculas/{id}', 'PeliculasController@destroy');
+
+//Personas
+Route::get('/personas', 'PersonasController@all');
+
+Route::get('/personas/{id}', 'PersonasController@show');
+
+Route::post('/personas', 'PersonasController@store');
+
+Route::put('/personas/{id}', 'PersonasController@update');
+
+Route::delete('personas/{id}', 'PersonasController@destroy');
+
