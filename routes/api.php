@@ -46,10 +46,10 @@ Route::delete('personas/{id}', 'PersonasController@destroy');
 
 Route::get('/noticias', 'NoticiasController@all');
 
-Route::get('/noticias/{id}', 'NoticiasControlle@show');
+Route::get('/noticias/{id}', 'NoticiasController@show');
 
-Route::post('/noticias', 'NoticiasControlle@store');
+Route::post('/noticias', 'NoticiasController@store');
 
-Route::put('/noticias/{id}', 'NoticiasControlle@update');
+Route::put('/noticias/{id}', 'NoticiasController@update');
 
-Route::delete('noticias/{id}', 'NoticiasControlle@destroy');
+Route::delete('noticias/{id}', 'NoticiasController@destroy');
