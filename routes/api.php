@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//Peliculas
 Route::get('/peliculas', 'PeliculasController@all');
 
 Route::get('/peliculas/{id}', 'PeliculasController@show');
@@ -42,3 +42,13 @@ Route::put('/personas/{id}', 'PersonasController@update');
 
 Route::delete('personas/{id}', 'PersonasController@destroy');
 
+//Criticas
+Route::get('/criticas', 'CriticasController@all');
+
+Route::get('/criticas/{id}', 'CriticasController@show');
+
+Route::post('/criticas', 'CriticasController@store');
+
+Route::put('/criticas/{id}', 'CriticasController@update');
+
+Route::delete('criticas/{id}', 'CriticasController@destroy');
