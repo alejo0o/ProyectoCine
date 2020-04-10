@@ -42,6 +42,19 @@ Route::put('/personas/{id}', 'PersonasController@update');
 
 Route::delete('personas/{id}', 'PersonasController@destroy');
 
+
+//Noticias
+
+Route::get('/noticias', 'NoticiasController@all');
+
+Route::get('/noticias/{id}', 'NoticiasController@show');
+
+Route::post('/noticias', 'NoticiasController@store');
+
+Route::put('/noticias/{id}', 'NoticiasController@update');
+
+Route::delete('noticias/{id}', 'NoticiasController@destroy');
+
 //Criticas
 Route::get('/criticas', 'CriticasController@all');
 
@@ -52,3 +65,4 @@ Route::post('/criticas', 'CriticasController@store');
 Route::put('/criticas/{id}', 'CriticasController@update');
 
 Route::delete('criticas/{id}', 'CriticasController@destroy');
+
