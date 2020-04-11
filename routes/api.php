@@ -21,15 +21,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Peliculas
-Route::get('/peliculas', 'PeliculasController@all');
+Route::get('/peliculas', 'PeliculasController@list');
 
-Route::get('/peliculas/{id}', 'PeliculasController@show');
+Route::get('/peliculas/{id}', 'PeliculasController@peliculaId');
 
-Route::post('/peliculas', 'PeliculasController@store');
+Route::post('/peliculas', 'PeliculasController@create');
 
-Route::put('/peliculas/{id}', 'PeliculasController@update');
+Route::put('/peliculas/{id}', 'PeliculasController@put');
 
-Route::delete('peliculas/{id}', 'PeliculasController@destroy');
+Route::delete('peliculas/{id}', 'PeliculasController@remove');
 
 //Personas
 Route::get('/personas', 'PersonasController@all');
@@ -65,4 +65,3 @@ Route::post('/criticas', 'CriticasController@store');
 Route::put('/criticas/{id}', 'CriticasController@update');
 
 Route::delete('criticas/{id}', 'CriticasController@destroy');
-

@@ -3,139 +3,64 @@
 namespace App\Http\Controllers;
 
 use App\pelicula;
-use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 
 class PeliculasController extends Controller
 {
 
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function list()
     {
-        return view('peliculas.index', [
-            'peliculas' => pelicula::all(),
-        ]);
+        return json_encode(pelicula::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        return view('peliculas.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $rules_save = [
-            'expresion' => ['required', 'regex:/^(AA|A|B|C|D)?$/i'],
-        ];
         $request->validate([
-            'id' => 'numeric|min:1|max:999999999',
+            'claid' => 'numeric|min:1|max:999999999',
             'nombre' => 'required|min:1|max:50',
             'fechadelanzamiento' => 'date',
             'duracion' => 'numeric|min:1|max:2147483647',
-            'clasificacion' => $rules_save['expresion'],
             'sinopsis' => 'required',
             'trailer' => 'url',
-            'paisdeorigen' => 'required|min:1|max:30',
         ]);
-        pelicula::create($request->all());
-        return redirect('/peliculas');
+
+        $pelicula = pelicula::create($request->all());
+        return json_encode($pelicula);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function peliculaId($id)
     {
-        if (isset($id)) {
-            return pelicula::where('id', $id)->get();
-        } elseif (!isset($id)) {
-            return pelicula::all();
-        }
+        return json_encode(pelicula::findOrFail($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view('peliculas.edit', [
-            'pelicula' => pelicula::findOrFail($id),
-        ]);
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function put(Request $request, $id)
     {
-        $rules_save = [
-            'expresion' => ['required', 'regex:/^(AA|A|B|C|D)?$/i'],
-        ];
         $request->validate([
-            'id' => 'numeric|min:1|max:999999999',
+            'claid' => 'numeric|min:1|max:999999999',
             'nombre' => 'required|min:1|max:50',
             'fechadelanzamiento' => 'date',
             'duracion' => 'numeric|min:1|max:2147483647',
-            'clasificacion' => $rules_save['expresion'],
             'sinopsis' => 'required',
             'trailer' => 'url',
-            'paisdeorigen' => 'required|min:1|max:30',
         ]);
         $pelicula = pelicula::findOrFail($id);
+        $pelicula->claid = $request->get('claid');
         $pelicula->nombre = $request->get('nombre');
         $pelicula->fechadelanzamiento = $request->get('fechadelanzamiento');
         $pelicula->duracion = $request->get('duracion');
-        $pelicula->clasificacion = $request->get('clasificacion');
         $pelicula->sinopsis = $request->get('sinopsis');
         $pelicula->trailer = $request->get('trailer');
-        $pelicula->paisdeorigen = $request->get('paisdeorigen');
 
         $pelicula->save();
 
-        return redirect('/peliculas');
+        return $pelicula;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function remove($id)
     {
         pelicula::findOrFail($id)->delete();
-        return redirect('/peliculas');
-    }
-
-    public function all()
-    {
-        return pelicula::all();
+        return http_response_code(200);
     }
 }

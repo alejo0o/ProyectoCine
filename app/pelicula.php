@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class pelicula extends Model
 {
 
-    protected $table='peliculas';
-    protected $fillable = ['id','nombre','fechadelanzamiento','duracion','clasificacion','sinopsis','trailer','paisdeorigen'];
-    protected $primaryKey = 'id';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    protected $table = 'peliculas';
+    protected $fillable = ['peliculasid', 'claid', 'nombre', 'fechadelanzamiento', 'duracion', 'sinopsis', 'trailer'];
+    protected $primaryKey = 'peliculasid';
+    public $incrementing = true;
+    protected $keyType = 'int';
+    public $timestamps = false;
 }
