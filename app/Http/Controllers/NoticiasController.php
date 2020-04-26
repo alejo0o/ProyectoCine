@@ -78,6 +78,7 @@ class NoticiasController extends Controller
             'expresion' => ['required', 'regex:/^[\pL\s\-]+$/u'],
         ];
         $request->validate([
+            'peliculasid'=>'numeric|min:1|max:999999999',
             'nottexto' => 'required',
             'notfecha' => 'date',
             'nottitulo' => 'required',
