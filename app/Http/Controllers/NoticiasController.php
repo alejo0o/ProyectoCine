@@ -38,8 +38,10 @@ class NoticiasController extends Controller
         $request->validate([
             'notid' => 'numeric|min:1|max:999999999',
             'peliculasid' => 'numeric|min:1|max:999999999',
-            'nottexto' => $rules_save['expresion'],
+            'nottexto' => 'required',
             'notfecha' => 'date',
+            'nottitulo' => 'required',
+            'notimagen' => 'url',
         ]);
         $noticia = Noticia::create($request->all());
         return json_encode($noticia);
@@ -76,15 +78,17 @@ class NoticiasController extends Controller
             'expresion' => ['required', 'regex:/^[\pL\s\-]+$/u'],
         ];
         $request->validate([
-            'notid' => 'numeric|min:1|max:999999999',
-            'peliculasid' => 'numeric|min:1|max:999999999',
-            'nottexto' => $rules_save['expresion'],
+            'nottexto' => 'required',
             'notfecha' => 'date',
+            'nottitulo' => 'required',
+            'notimagen' => 'url',
         ]);
         $noticia = Noticia::findOrFail($id);
         $noticia->peliculasid = $request->get('peliculasid');
         $noticia->nottexto = $request->get('nottexto');
         $noticia->notfecha = $request->get('notfecha');
+        $noticia->nottitulo = $request->get('nottitulo');
+        $noticia->notimagen = $request->get('notimagen');
         $noticia->save();
 
         return $noticia;
