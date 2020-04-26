@@ -8,7 +8,7 @@ class pelicula extends Model
 {
 
     protected $table = 'peliculas';
-    protected $fillable = ['peliculasid', 'claid', 'nombre', 'fechadelanzamiento', 'duracion', 'sinopsis', 'trailer'];
+    protected $fillable = ['peliculasid', 'claid', 'nombre', 'fechadelanzamiento', 'duracion', 'sinopsis', 'trailer', 'portada'];
     protected $primaryKey = 'peliculasid';
     public $incrementing = true;
     protected $keyType = 'int';

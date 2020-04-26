@@ -22,6 +22,7 @@ class PeliculasController extends Controller
             'duracion' => 'numeric|min:1|max:2147483647',
             'sinopsis' => 'required',
             'trailer' => 'url',
+            'portada' => 'url',
         ]);
 
         $pelicula = pelicula::create($request->all());
@@ -44,6 +45,7 @@ class PeliculasController extends Controller
             'duracion' => 'numeric|min:1|max:2147483647',
             'sinopsis' => 'required',
             'trailer' => 'url',
+            'portada' => 'url',
         ]);
         $pelicula = pelicula::findOrFail($id);
         $pelicula->claid = $request->get('claid');
@@ -52,6 +54,7 @@ class PeliculasController extends Controller
         $pelicula->duracion = $request->get('duracion');
         $pelicula->sinopsis = $request->get('sinopsis');
         $pelicula->trailer = $request->get('trailer');
+        $pelicula->portada = $request->get('portada');
 
         $pelicula->save();
 
