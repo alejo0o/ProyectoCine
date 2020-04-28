@@ -70,3 +70,7 @@ Route::delete('criticas/{id}', 'CriticasController@destroy');
 Route::get('/customResource/estrenos', 'CustomRequests@getEstrenos');
 
 Route::get('/customResource/criticas', 'CustomRequests@getPromedioCriticas');
+
+Route::get('/customResource/animes', 'CustomRequests@getAnimesporEstreno');
+
+Route::get('/customResource/{id}/usuarios', 'CustomRequests@getCriticasPelicula');
