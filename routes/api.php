@@ -32,7 +32,7 @@ Route::put('/peliculas/{id}', 'PeliculasController@put');
 Route::delete('peliculas/{id}', 'PeliculasController@remove');
 
 //Personas
-Route::get('/personas', 'PersonasController@all');
+Route::get('/personas', 'PersonasController@getListIni');
 
 Route::get('/personas/{id}', 'PersonasController@show');
 
@@ -56,7 +56,7 @@ Route::put('/noticias/{id}', 'NoticiasController@update');
 Route::delete('noticias/{id}', 'NoticiasController@destroy');
 
 //Criticas
-Route::get('/criticas', 'CriticasController@all');
+Route::get('/criticas', 'CriticasController@getListIni');
 
 Route::get('/criticas/{id}', 'CriticasController@show');
 
@@ -74,3 +74,5 @@ Route::get('/customResource/criticas', 'CustomRequests@getPromedioCriticas');
 Route::get('/customResource/animes', 'CustomRequests@getAnimesporEstreno');
 
 Route::get('/customResource/{id}/usuarios', 'CustomRequests@getCriticasPelicula');
+
+Route::get('/customResource/noticias', 'CustomRequests@getNoticiasFecha');

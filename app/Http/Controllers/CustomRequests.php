@@ -60,4 +60,12 @@ class CustomRequests extends Controller
 
         return json_encode($paginador);
     }
+    public function getNoticiasFecha()
+    {
+        $count = DB::table('noticias')->select('*')->orderBy('notfecha', 'desc')->paginate(3);
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+    }
 }
