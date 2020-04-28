@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\pelicula;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\DB;
 
 class PeliculasController extends Controller
 {
@@ -65,5 +67,40 @@ class PeliculasController extends Controller
     {
         pelicula::findOrFail($id)->delete();
         return http_response_code(200);
+    }
+    public function getListIni()
+    {
+        $count = DB::table('peliculas')->paginate(3);
+
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+
+        return json_encode($paginador);
+    }
+    public function getEstrenos()
+    {
+        $count = DB::table('peliculas')->select('*')->orderBy('fechadelanzamiento', 'desc')->paginate(3);
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+        /*$count = DB::table('peliculas')->selectRaw('peliculasid,fechadelanzamiento as fechita')->orderByRaw('fechadelanzamiento')->get();
+        echo $count;*/
+    }
+    public function getPromedioCriticas()
+    {
+        $count = DB::table('peliculas')
+            ->join('criticas', 'peliculas.peliculasid', '=', 'criticas.peliculasid')
+            ->selectRaw('avg(crivalor) as promedio,peliculas.peliculasid,peliculas.nombre')
+            //->whereRaw('criticas.peliculasid = peliculas.peliculasid')
+            ->groupByRaw('peliculas.peliculasid ')
+            ->orderByRaw('promedio desc')
+            ->paginate(1);
+
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
     }
 }

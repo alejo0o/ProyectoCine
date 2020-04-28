@@ -21,7 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Peliculas
-Route::get('/peliculas', 'PeliculasController@list');
+Route::get('/peliculas', 'PeliculasController@getListIni');
+
+Route::get('/peliculas/estrenos', 'PeliculasController@getEstrenos');
+
+Route::get('/peliculas/criticas', 'PeliculasController@getPromedioCriticas');
 
 Route::get('/peliculas/{id}', 'PeliculasController@peliculaId');
 
