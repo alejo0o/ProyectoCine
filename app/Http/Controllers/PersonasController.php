@@ -6,10 +6,11 @@ use App\Persona;
 use Illuminate\Foundation\Bootstrap\SetRequestForConsole;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
+use Illuminate\Support\Facades\DB;
 
 class PersonasController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -116,8 +117,14 @@ class PersonasController extends Controller
         return http_response_code(200);
     }
 
-    public function all()
+    public function getListIni()
     {
-        return json_encode(Persona::all());
+        $count = DB::table('personas')->paginate(1);
+
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+
+        return json_encode($paginador);
     }
 }

@@ -36,7 +36,7 @@ Route::put('/peliculas/{id}', 'PeliculasController@put');
 Route::delete('peliculas/{id}', 'PeliculasController@remove');
 
 //Personas
-Route::get('/personas', 'PersonasController@all');
+Route::get('/personas', 'PersonasController@getListIni');
 
 Route::get('/personas/{id}', 'PersonasController@show');
 
@@ -50,6 +50,8 @@ Route::delete('personas/{id}', 'PersonasController@destroy');
 //Noticias
 
 Route::get('/noticias', 'NoticiasController@all');
+
+Route::get('/noticias/fecha', 'NoticiasController@getNoticiasFecha');
 
 Route::get('/noticias/{id}', 'NoticiasController@show');
 

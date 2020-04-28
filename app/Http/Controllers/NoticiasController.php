@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Noticia;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class NoticiasController extends Controller
 {
@@ -110,7 +110,14 @@ class NoticiasController extends Controller
     {
         return json_encode(Noticia::all());
     }
-
+    public function getNoticiasFecha()
+    {
+        $count = DB::table('noticias')->select('*')->orderBy('notfecha', 'desc')->paginate(3);
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+    }
 
 
 }
