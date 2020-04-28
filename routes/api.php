@@ -23,10 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Peliculas
 Route::get('/peliculas', 'PeliculasController@getListIni');
 
-Route::get('/peliculas/estrenos', 'PeliculasController@getEstrenos');
-
-Route::get('/peliculas/criticas', 'PeliculasController@getPromedioCriticas');
-
 Route::get('/peliculas/{id}', 'PeliculasController@peliculaId');
 
 Route::post('/peliculas', 'PeliculasController@create');
@@ -51,8 +47,6 @@ Route::delete('personas/{id}', 'PersonasController@destroy');
 
 Route::get('/noticias', 'NoticiasController@all');
 
-Route::get('/noticias/fecha', 'NoticiasController@getNoticiasFecha');
-
 Route::get('/noticias/{id}', 'NoticiasController@show');
 
 Route::post('/noticias', 'NoticiasController@store');
@@ -62,7 +56,7 @@ Route::put('/noticias/{id}', 'NoticiasController@update');
 Route::delete('noticias/{id}', 'NoticiasController@destroy');
 
 //Criticas
-Route::get('/criticas', 'CriticasController@all');
+Route::get('/criticas', 'CriticasController@getListIni');
 
 Route::get('/criticas/{id}', 'CriticasController@show');
 
@@ -71,3 +65,10 @@ Route::post('/criticas', 'CriticasController@store');
 Route::put('/criticas/{id}', 'CriticasController@update');
 
 Route::delete('criticas/{id}', 'CriticasController@destroy');
+
+//Recursos Personalizados
+Route::get('/customResource/estrenos', 'CustomRequests@getEstrenos');
+
+Route::get('/customResource/criticas', 'CustomRequests@getPromedioCriticas');
+
+Route::get('/customResource/noticias', 'CustomRequests@getNoticiasFecha');
