@@ -45,7 +45,7 @@ Route::delete('personas/{id}', 'PersonasController@destroy');
 
 //Noticias
 
-Route::get('/noticias', 'NoticiasController@all');
+Route::get('/noticias', 'NoticiasController@getListIni');
 
 Route::get('/noticias/{id}', 'NoticiasController@show');
 
