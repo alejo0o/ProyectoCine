@@ -110,4 +110,14 @@ class NoticiasController extends Controller
     {
         return json_encode(Noticia::all());
     }
+    public function getListIni()
+    {
+        $count = DB::table('noticias')->paginate(3);
+
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+
+        return json_encode($paginador);
+    }
 }
