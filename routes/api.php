@@ -23,10 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Peliculas
 Route::get('/peliculas', 'PeliculasController@getListIni');
 
-Route::get('/peliculas/estrenos', 'PeliculasController@getEstrenos');
-
-Route::get('/peliculas/criticas', 'PeliculasController@getPromedioCriticas');
-
 Route::get('/peliculas/{id}', 'PeliculasController@peliculaId');
 
 Route::post('/peliculas', 'PeliculasController@create');
@@ -69,3 +65,8 @@ Route::post('/criticas', 'CriticasController@store');
 Route::put('/criticas/{id}', 'CriticasController@update');
 
 Route::delete('criticas/{id}', 'CriticasController@destroy');
+
+//Recursos Personalizados
+Route::get('/customResource/estrenos', 'CustomRequests@getEstrenos');
+
+Route::get('/customResource/criticas', 'CustomRequests@getPromedioCriticas');
