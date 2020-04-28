@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Noticia;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class NoticiasController extends Controller
 {
@@ -110,7 +110,4 @@ class NoticiasController extends Controller
     {
         return json_encode(Noticia::all());
     }
-
-
-
 }

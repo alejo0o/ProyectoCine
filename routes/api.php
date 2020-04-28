@@ -32,7 +32,7 @@ Route::put('/peliculas/{id}', 'PeliculasController@put');
 Route::delete('peliculas/{id}', 'PeliculasController@remove');
 
 //Personas
-Route::get('/personas', 'PersonasController@all');
+Route::get('/personas', 'PersonasController@getListIni');
 
 Route::get('/personas/{id}', 'PersonasController@show');
 
@@ -70,3 +70,5 @@ Route::delete('criticas/{id}', 'CriticasController@destroy');
 Route::get('/customResource/estrenos', 'CustomRequests@getEstrenos');
 
 Route::get('/customResource/criticas', 'CustomRequests@getPromedioCriticas');
+
+Route::get('/customResource/noticias', 'CustomRequests@getNoticiasFecha');
