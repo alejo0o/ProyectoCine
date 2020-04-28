@@ -56,7 +56,7 @@ Route::put('/noticias/{id}', 'NoticiasController@update');
 Route::delete('noticias/{id}', 'NoticiasController@destroy');
 
 //Criticas
-Route::get('/criticas', 'CriticasController@all');
+Route::get('/criticas', 'CriticasController@getListIni');
 
 Route::get('/criticas/{id}', 'CriticasController@show');
 

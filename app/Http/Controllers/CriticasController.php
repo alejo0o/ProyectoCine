@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\critica;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class criticasController extends Controller
 {
@@ -118,5 +119,16 @@ class criticasController extends Controller
     public function all()
     {
         return json_encode(critica::all());
+    }
+
+    public function getListIni()
+    {
+        $count = DB::table('criticas')->paginate(3);
+
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+
+        return json_encode($paginador);
     }
 }
