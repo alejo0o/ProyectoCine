@@ -9,7 +9,7 @@ class CustomRequests extends Controller
 {
     public function getEstrenos()
     {
-        $count = DB::table('peliculas')->select('*')->orderBy('fechadelanzamiento', 'desc')->paginate(3);
+        $count = DB::table('peliculas')->select('*')->orderBy('fechadelanzamiento', 'desc')->paginate(5);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
         $paginador = ["info" => $info, "results" => $results];
@@ -25,7 +25,7 @@ class CustomRequests extends Controller
             //->whereRaw('criticas.peliculasid = peliculas.peliculasid')
             ->groupByRaw('peliculas.peliculasid, clasificacion.clanombre ')
             ->orderByRaw('promedio desc')
-            ->paginate(3);
+            ->paginate(5);
 
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
@@ -39,7 +39,7 @@ class CustomRequests extends Controller
             ->selectRaw('peliculas.nombre, peliculas.fechadelanzamiento,peliculas.duracion,peliculas.sinopsis,peliculas.portada')
             ->whereRaw('tiene.genid = 2')
             ->orderByRaw('fechadelanzamiento desc')
-            ->paginate(3);
+            ->paginate(5);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
         $paginador = ["info" => $info, "results" => $results];
@@ -52,7 +52,7 @@ class CustomRequests extends Controller
             ->select('criticas.crifecha', 'users.email', 'criticas.critexto', 'criticas.crivalor', 'criticas.criid')
             ->where('criticas.peliculasid', '=', $id)
             ->orderByRaw('criticas.crifecha desc')
-            ->paginate(3);
+            ->paginate(5);
 
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
@@ -62,7 +62,7 @@ class CustomRequests extends Controller
     }
     public function getNoticiasFecha()
     {
-        $count = DB::table('noticias')->select('*')->orderBy('notfecha', 'desc')->paginate(3);
+        $count = DB::table('noticias')->select('*')->orderBy('notfecha', 'desc')->paginate(5);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
         $paginador = ["info" => $info, "results" => $results];
