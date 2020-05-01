@@ -76,3 +76,7 @@ Route::get('/customResource/animes', 'CustomRequests@getAnimesporEstreno');
 Route::get('/customResource/{id}/usuarios', 'CustomRequests@getCriticasPelicula');
 
 Route::get('/customResource/noticias', 'CustomRequests@getNoticiasFecha');
+
+Route::get('/customResource/{id}/criticaPelicula', 'CustomRequests@getCriticasPromedioPelicula');
+
+Route::get('/customResource/{idMovie}/{idUser}/criticaUsuarioPelicula', 'CustomRequests@getCriticasUsuarioPelicula');

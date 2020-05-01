@@ -89,7 +89,7 @@ class criticasController extends Controller
             'criid' => 'numeric|min:1|max:999999999',
             'peliculasid' => 'numeric|min:1|max:999999999',
             'id' => 'numeric|min:1|max:999999999',
-            'critexto' => $rules_save['expresion'],
+            'critexto' => 'required',
             'crifecha' => 'date',
             'crivalor' => $rules_save['valorcritica'],
         ]);

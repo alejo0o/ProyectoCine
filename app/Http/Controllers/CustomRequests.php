@@ -68,4 +68,33 @@ class CustomRequests extends Controller
         $paginador = ["info" => $info, "results" => $results];
         return json_encode($paginador);
     }
+    public function getCriticasPromedioPelicula($id)
+    {
+        $count = DB::table('peliculas')
+            ->join('criticas', 'peliculas.peliculasid', '=', 'criticas.peliculasid')
+            ->join('clasificacion', 'peliculas.claid', '=', 'clasificacion.claid')
+            ->selectRaw('avg(crivalor) as promedio,peliculas.peliculasid ,peliculas.nombre,peliculas.sinopsis,peliculas.fechadelanzamiento
+,peliculas.duracion, peliculas.portada, clasificacion.clanombre')
+            ->where('peliculas.peliculasid', '=', $id)
+            ->groupByRaw('peliculas.peliculasid, clasificacion.clanombre ')
+            ->orderByRaw('promedio desc')
+            ->paginate(5);
+
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+    }
+    public function getCriticasUsuarioPelicula($idMovie, $idUser)
+    {
+        $count = DB::table('criticas')
+            ->select('*')
+            ->where('peliculasid', '=', $idMovie)
+            ->where('id', '=', $idUser)
+            ->paginate(5);
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+    }
 }
