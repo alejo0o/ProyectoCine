@@ -36,7 +36,7 @@ class CustomRequests extends Controller
     {
         $count = DB::table('peliculas')
             ->join('tiene', 'peliculas.peliculasid', '=', 'tiene.peliculasid')
-            ->selectRaw('peliculas.nombre, peliculas.fechadelanzamiento,peliculas.duracion,peliculas.sinopsis,peliculas.portada')
+            ->selectRaw('peliculas.peliculasid,peliculas.nombre, peliculas.fechadelanzamiento,peliculas.duracion,peliculas.sinopsis,peliculas.portada')
             ->whereRaw('tiene.genid = 2')
             ->orderByRaw('fechadelanzamiento desc')
             ->paginate(5);
