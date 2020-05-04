@@ -97,4 +97,21 @@ class CustomRequests extends Controller
         $paginador = ["info" => $info, "results" => $results];
         return json_encode($paginador);
     }
+    public function getEstrenosDirector()
+    {
+        $count = DB::table('participa')
+            ->join('peliculas', 'participa.peliculasid', '=', 'peliculas.peliculasid')
+            ->join('personas', 'participa.perid', '=', 'personas.perid')
+            ->join('roles', 'participa.rolid', '=', 'roles.rolid')
+            ->selectRaw('peliculas.peliculasid, peliculas.nombre, peliculas.fechadelanzamiento, peliculas.duracion,peliculas.sinopsis,
+            peliculas.trailer, peliculas.portada,personas.pernombre, personas.perapellido')
+            ->where('roles.rolid', '=', '3')
+            ->groupByRaw('peliculas.peliculasid, personas.pernombre, personas.perapellido')
+            ->orderByRaw('peliculas.fechadelanzamiento desc')
+            ->paginate(10);
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+    }
 }
