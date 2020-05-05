@@ -84,3 +84,5 @@ Route::get('/customResource/{idMovie}/{idUser}/criticaUsuarioPelicula', 'CustomR
 Route::get('/customResource/estrenosDirector', 'CustomRequests@getEstrenosDirector');
 
 Route::get('/customResource/{id}/peliculasDirector', 'CustomRequests@getEstrenosDirectorID');
+
+Route::get('/customResource/{id}/peliculaInformacion', 'CustomRequests@getPeliculaDirectorPromedio');

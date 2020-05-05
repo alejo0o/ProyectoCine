@@ -127,4 +127,20 @@ class CustomRequests extends Controller
 
         return json_encode($count->first());
     }
+    public function getPeliculaDirectorPromedio($id)
+    {
+        $count = DB::table('peliculas')
+            ->join('criticas', 'peliculas.peliculasid', '=', 'criticas.peliculasid')
+            ->join('clasificacion', 'peliculas.claid', '=', 'clasificacion.claid')
+            ->join('participa', 'peliculas.peliculasid', '=', 'participa.peliculasid')
+            ->join('personas', 'participa.perid', '=', 'personas.perid')
+            ->selectRaw('avg(crivalor) as promedio,peliculas.peliculasid ,peliculas.nombre,peliculas.sinopsis,peliculas.fechadelanzamiento
+,peliculas.duracion, peliculas.portada, clasificacion.clanombre, personas.pernombre, personas.perapellido')
+            ->where('peliculas.peliculasid', '=', $id)
+            ->where('participa.rolid', '=', 3)
+            ->groupByRaw('peliculas.peliculasid, clasificacion.clanombre, personas.pernombre, personas.perapellido');
+
+
+        return json_encode($count->first());
+    }
 }
