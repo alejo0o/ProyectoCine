@@ -20,7 +20,7 @@ class Users2Controller extends Controller
             'nickname' => 'required|min:1|max:100',
             'name' => 'required|min:1|max:100',
             'picture' => 'required|min:1|max:200',
-            'email' => 'required|min:1|max:100',
+            'email' => 'email',
             'sub' => 'required|min:1|max:255',
         ]);
 
@@ -42,7 +42,7 @@ class Users2Controller extends Controller
             'nickname' => 'required|min:1|max:100',
             'name' => 'required|min:1|max:100',
             'picture' => 'required|min:1|max:200',
-            'email' => 'required|min:1|max:100',
+            'email' => 'email',
             'sub' => 'required|min:1|max:255',
         ]);
         $pelicula = users2::findOrFail($id);
