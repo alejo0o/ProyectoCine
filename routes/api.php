@@ -99,3 +99,7 @@ Route::get('/customResource/estrenosDirector', 'CustomRequests@getEstrenosDirect
 Route::get('/customResource/{id}/peliculasDirector', 'CustomRequests@getEstrenosDirectorID');
 
 Route::get('/customResource/{id}/peliculaInformacion', 'CustomRequests@getPeliculaDirectorPromedio');
+
+Route::get('/customResource/{word}/buscarNoticia', 'CustomRequests@getBuscarNoticias');
+
+Route::get('/customResource/{word}/buscarPelicula', 'CustomRequests@getBuscarPeliculas');
