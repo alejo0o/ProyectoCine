@@ -66,6 +66,19 @@ Route::put('/criticas/{id}', 'CriticasController@update');
 
 Route::delete('criticas/{id}', 'CriticasController@destroy');
 
+//Usuarios
+
+Route::get('/users2', 'Users2Controller@getListIni');
+
+Route::get('/users2/{id}', 'Users2Controller@peliculaId');
+
+Route::post('/users2', 'Users2Controller@create');
+
+Route::put('/users2/{id}', 'Users2Controller@put');
+
+Route::delete('users2/{id}', 'Users2Controller@remove');
+
+
 //Recursos Personalizados
 Route::get('/customResource/estrenos', 'CustomRequests@getEstrenos');
 
