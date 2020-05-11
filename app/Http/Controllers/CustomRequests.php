@@ -143,4 +143,26 @@ class CustomRequests extends Controller
 
         return json_encode($count->first());
     }
+    public function getBuscarNoticias($palabra)
+    {
+        $count = DB::table('noticias')
+            ->select('*')
+            ->where(strtolower('nottitulo'),'ILIKE','%'.strtolower($palabra).'%')
+            ->paginate(6);
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+    }
+    public function getBuscarPeliculas($palabra)
+    {
+        $count = DB::table('peliculas')
+            ->select('*')
+            ->where(strtolower('nombre'),'ILIKE','%'.strtolower($palabra).'%')
+            ->paginate(6);
+        $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
+        $results = $count->items();
+        $paginador = ["info" => $info, "results" => $results];
+        return json_encode($paginador);
+    }
 }
