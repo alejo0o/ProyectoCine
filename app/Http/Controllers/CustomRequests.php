@@ -148,6 +148,7 @@ class CustomRequests extends Controller
         $count = DB::table('noticias')
             ->select('*')
             ->where(strtolower('nottitulo'), 'ILIKE', '%' . strtolower($palabra) . '%')
+            -> orderByRaw('notfecha desc')
             ->paginate(6);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
@@ -159,6 +160,7 @@ class CustomRequests extends Controller
         $count = DB::table('peliculas')
             ->select('*')
             ->where(strtolower('nombre'), 'ILIKE', '%' . strtolower($palabra) . '%')
+            -> orderByRaw('fechadelanzamiento desc')
             ->paginate(6);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
