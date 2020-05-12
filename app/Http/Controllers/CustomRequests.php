@@ -147,7 +147,7 @@ class CustomRequests extends Controller
     {
         $count = DB::table('noticias')
             ->select('*')
-            ->where(strtolower('nottitulo'),'ILIKE','%'.strtolower($palabra).'%')
+            ->where(strtolower('nottitulo'), 'ILIKE', '%' . strtolower($palabra) . '%')
             ->paginate(6);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
@@ -158,11 +158,18 @@ class CustomRequests extends Controller
     {
         $count = DB::table('peliculas')
             ->select('*')
-            ->where(strtolower('nombre'),'ILIKE','%'.strtolower($palabra).'%')
+            ->where(strtolower('nombre'), 'ILIKE', '%' . strtolower($palabra) . '%')
             ->paginate(6);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
         $paginador = ["info" => $info, "results" => $results];
         return json_encode($paginador);
+    }
+    public function getUsersporEmail($sub)
+    {
+        $count = DB::table('users2')
+            ->select('*')
+            ->where('sub', '=', $sub);
+        return json_encode($count->first());
     }
 }

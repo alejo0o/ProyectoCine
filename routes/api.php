@@ -103,3 +103,5 @@ Route::get('/customResource/{id}/peliculaInformacion', 'CustomRequests@getPelicu
 Route::get('/customResource/{word}/buscarNoticia', 'CustomRequests@getBuscarNoticias');
 
 Route::get('/customResource/{word}/buscarPelicula', 'CustomRequests@getBuscarPeliculas');
+
+Route::get('/customResource/{sub}/obtenerUsuario', 'CustomRequests@getUsersporEmail');
