@@ -148,7 +148,7 @@ class CustomRequests extends Controller
         $count = DB::table('noticias')
             ->select('*')
             ->where(strtolower('nottitulo'), 'ILIKE', '%' . strtolower($palabra) . '%')
-            -> orderByRaw('notfecha desc')
+            ->orderByRaw('notfecha desc')
             ->paginate(6);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
@@ -160,7 +160,7 @@ class CustomRequests extends Controller
         $count = DB::table('peliculas')
             ->select('*')
             ->where(strtolower('nombre'), 'ILIKE', '%' . strtolower($palabra) . '%')
-            -> orderByRaw('fechadelanzamiento desc')
+            ->orderByRaw('fechadelanzamiento desc')
             ->paginate(6);
         $info = ["count" => $count->total(), "pages" => $count->lastPage(), "next" => $count->nextPageUrl(), "prev" => $count->previousPageUrl()];
         $results = $count->items();
@@ -169,7 +169,7 @@ class CustomRequests extends Controller
     }
     public function getUsersporEmail($sub)
     {
-        $count = DB::table('users2')
+        $count = DB::table('users')
             ->select('*')
             ->where('sub', '=', $sub);
         return json_encode($count->first());
