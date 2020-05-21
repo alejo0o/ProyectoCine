@@ -49,7 +49,7 @@ class CustomRequests extends Controller
     {
         $count = DB::table('criticas')
             ->join('users', 'criticas.id', '=', 'users.id')
-            ->select('criticas.crifecha', 'users.email', 'criticas.critexto', 'criticas.crivalor', 'criticas.criid')
+            ->select('criticas.crifecha', 'users.email', 'criticas.critexto', 'criticas.crivalor', 'criticas.criid', 'users.nickname')
             ->where('criticas.peliculasid', '=', $id)
             ->orderByRaw('criticas.crifecha desc')
             ->paginate(10);
